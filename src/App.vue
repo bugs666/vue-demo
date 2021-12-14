@@ -10,6 +10,10 @@
       </li>
     </ol>
     <div>{{ time | format('YYYY-MM-DD') }}</div>
+    <h1>当前的数字是：{{ num }}</h1>
+    <h1>放大十倍后的数字是：<span v-big="num"></span></h1>
+    <input type="text" v-focus="num">
+    <button @click="num++">点我+1</button>
   </div>
 </template>
 
@@ -23,7 +27,8 @@ export default {
       arr: [{name: '马冬梅', age: 20}, {name: '徐冬冬', age: 17}, {name: '徐伦', age: 21}, {name: '周杰伦', age: 19}],
       keyWord: '',
       sortMode: 'common',
-      time: new Date()
+      time: new Date(),
+      num: 1
     }
   },
   name: 'App',
@@ -44,11 +49,34 @@ export default {
       return arr.sort((firstVal, secondVal) => this.sortMode === 'desc' ? secondVal.age - firstVal.age : firstVal.age - secondVal.age);
     }
   },
+  //过滤器
   filters: {
     format(val, formatter = 'YYYY-MM-DD HH:mm:ss') {
       return moment(val).format(formatter);
     }
+  },
+  //自定义指令
+  directives: {
+    big(el, binding) {
+      el.innerHTML = binding.value * 10;
+    },
+    focus: {
+      //节点初次加载时，用于初始化
+      bind(el, binding) {
+        el.value = binding.value;
+      },
+      //子节点挂载到父节点上
+      inserted(el) {
+        el.focus();
+      },
+      //所在组件的VNode更新时
+      update(el, binding) {
+        el.value = binding.value;
+        // el.focus();
+      }
+    }
   }
+
 }
 </script>
 
