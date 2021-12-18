@@ -40,6 +40,7 @@ export default {
       this.sortMode = type;
     }
   },
+  //计算属性
   computed: {
     currentList() {
       let arr = this.keyWord ? this.arr.filter(({name}) => name.includes(this.keyWord)) : [...this.arr];
@@ -75,8 +76,35 @@ export default {
         // el.focus();
       }
     }
+  },
+  beforeCreate() {
+    console.log('beforeCreate');
+  },
+  created() {
+    console.log('created');
+  },
+  beforeMount() {
+    console.log('beforeMount');
+  },
+  mounted() {
+    console.log('mounted');
+    setTimeout(() => {
+      this.num = 50;
+      console.log('模拟请求接口获取数据');
+    }, 1000);
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate');
+  },
+  updated() {
+    console.log('updated');
+  },
+  beforeDestroy() {
+    console.log('再见');
+  },
+  destroyed() {
+    console.log('我凉了');
   }
-
 }
 </script>
 
