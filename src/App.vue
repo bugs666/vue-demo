@@ -78,10 +78,12 @@ export default {
     }
   },
   beforeCreate() {
-    console.log('beforeCreate');
+    console.log('beforeCreate', this);
+    console.log('beforeCreate', this.$data);
   },
   created() {
-    console.log('created');
+    console.log('created', this);
+    console.log('created', this.$data);
   },
   beforeMount() {
     console.log('beforeMount');
