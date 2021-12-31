@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <input type="text" v-model="keyWord">
-    <button type="button" @click="()=>changeSortMode('asc')">升序</button>
-    <button type="button" @click="()=>changeSortMode('desc')">降序</button>
-    <button type="button" @click="()=>changeSortMode()">还原</button>
-    <ol>
-      <li v-for="({name,age}) in currentList" :key="name">{{ name }}-{{ age }}
-        <input type="text">
-      </li>
-    </ol>
-    <div>{{ time | format('YYYY-MM-DD') }}</div>
-    <h1>当前的数字是：{{ num }}</h1>
-    <h1>放大十倍后的数字是：<span v-big="num"></span></h1>
-    <input type="text" v-focus="num">
-    <button @click="num++">点我+1</button>
+    <!--    <input type="text" v-model="keyWord">
+        <button type="button" @click="()=>changeSortMode('asc')">升序</button>
+        <button type="button" @click="()=>changeSortMode('desc')">降序</button>
+        <button type="button" @click="()=>changeSortMode()">还原</button>
+        <ol>
+          <li v-for="({name,age}) in currentList" :key="name">{{ name }}-{{ age }}
+            <input type="text">
+          </li>
+        </ol>
+        <div>{{ time | format('YYYY-MM-DD') }}</div>
+        <h1>当前的数字是：{{ num }}</h1>
+        <h1>放大十倍后的数字是：<span v-big="num"></span></h1>
+        <input type="text" v-focus="num">
+        <button @click="num++">点我+1</button>-->
+    <School/>
+    <Students :isChangeBg="true"/>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
+import School from './components/School.vue'
+import Students from './components/Students.vue'
 import moment from 'moment';
 
 export default {
@@ -33,7 +37,7 @@ export default {
   },
   name: 'App',
   components: {
-    // HelloWorld
+    Students, School
   },
   methods: {
     changeSortMode(type = 'common') {
