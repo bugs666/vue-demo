@@ -33,20 +33,29 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .students-ul {
   background: orchid;
   padding-right: 16px;
+
+  li {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+
+  }
+
+  .changebg {
+
+    &:hover {
+      background: antiquewhite;
+
+    }
+
+  }
+
 }
 
-.students-ul li {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid black;
-}
 
-.changebg:hover {
-  background: antiquewhite;
-}
 </style>
