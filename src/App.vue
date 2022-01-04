@@ -16,13 +16,16 @@
         <button @click="num++">点我+1</button>-->
     <School/>
     <Students :isChangeBg="true"/>
+    <hr/>
+    <TodoList/>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import School from './components/School.vue'
-import Students from './components/Students.vue'
+import School from './components/School.vue';
+import Students from './components/Students.vue';
+import TodoList from './components/TodoList/TodoList';
 import moment from 'moment';
 
 export default {
@@ -37,7 +40,7 @@ export default {
   },
   name: 'App',
   components: {
-    Students, School
+    Students, School, TodoList
   },
   methods: {
     changeSortMode(type = 'common') {
