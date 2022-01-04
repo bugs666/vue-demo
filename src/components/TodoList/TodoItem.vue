@@ -1,6 +1,6 @@
 <template>
   <div class="todo-item">
-    <el-checkbox @change="onSelect">{{ todoData }}</el-checkbox>
+    <el-checkbox :label="todoData"/>
     <el-button type="text" class="remove-btn" @click="onRemove">删除</el-button>
   </div>
 </template>
