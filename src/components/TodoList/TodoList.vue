@@ -17,12 +17,15 @@
 import TodoItem from "./TodoItem";
 import TodoFooter from "./TodoFooter";
 
+let allTodoKey = '@@ALL_TODO';
+let allReadyKey = '@@ALL_READY';
+
 export default {
   name: "TodoList",
   components: {TodoItem, TodoFooter},
   data() {
     return {
-      list: ['写代码', '喝水', '接水', '上厕所'],
+      list: [],
       input: '',
       allSelect: [],
       isSelectAll: false
@@ -50,6 +53,12 @@ export default {
       val && this.list.push(val);
     }
   },
+  created() {
+    let todo = window.sessionStorage.getItem(allTodoKey) ?? ['写代码', '喝水', '接水', '上厕所'];
+    let ready = window.sessionStorage.getItem(allReadyKey) ?? [this.allSelect];
+    this.list = typeof todo === 'string' ? [...JSON.parse(todo)] : todo;
+    this.allSelect = typeof ready === 'string' ? [...JSON.parse(ready)] : ready;
+  },
   computed: {
     currentList() {
       if (this.input) {
@@ -63,6 +72,10 @@ export default {
     list(val) {
       let list = this.allSelect.filter(it => val.includes(it));
       this.allSelect = [...list];
+      window.sessionStorage.setItem(allTodoKey, JSON.stringify(val));
+    },
+    allSelect(val) {
+      window.sessionStorage.setItem(allReadyKey, JSON.stringify(val));
     },
     isSelectAll(val) {
       this.allSelect = val ? [...this.list] : [];
