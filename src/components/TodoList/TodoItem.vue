@@ -12,15 +12,16 @@ export default {
     todoData: {
       type: String,
       required: true
-    },
-    onSelect: {
-      type: Function,
-      required: true
-    },
-    onRemove: {
-      type: Function,
-      required: true
     }
+  },
+  methods: {
+    onRemove() {
+      this.$emit('removeItem');
+    }
+  },
+  destroyed() {
+    //销毁组件后解绑所有自定义事件
+    this.$off();
   }
 }
 </script>

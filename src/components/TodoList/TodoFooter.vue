@@ -17,26 +17,28 @@ export default {
       type: Number,
       required: true
     },
-    onSelect: {
-      type: Function,
-      required: true
-    },
     isShowBtn: {
       type: Boolean,
       required: false,
       default: false
     },
-    onRemove: {
-      type: Function,
-      required: true
+  },
+  methods: {
+    onSelect() {
+      this.$emit('selectAllItem');
+    },
+    onRemove() {
+      this.$emit('removeAllReady');
     }
   },
   computed: {
-    isSelect() {
-      if (this.all === this.ready && this.all === 0) {
-        return false;
+    isSelect: {
+      get() {
+        if (this.all === this.ready && this.all === 0) {
+          return false;
+        }
+        return this.all === this.ready;
       }
-      return this.all === this.ready;
     }
   }
 }

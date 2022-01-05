@@ -1,15 +1,18 @@
 <template>
   <el-card class="todo-list">
-    <el-input v-model="input" placeholder="请输入待办项" class="search-input" :clearable="true" @change="addItem"/>
+    <div class="todo-head">
+      <el-input v-model="input" placeholder="请输入待办项" class="search-input" :clearable="true" @change="addItem"/>
+      <el-button type="primary" @click="resetData" size="medium">重置数据</el-button>
+    </div>
     <el-checkbox-group v-model="allSelect">
       <div v-for="(item,index) in currentList" :key="index">
-        <TodoItem :todoData="item" :onRemove="()=>remove(index)" :onSelect="(val)=>select(val,index,item)"/>
+        <TodoItem :todoData="item" @removeItem="()=>remove(index)"/>
       </div>
     </el-checkbox-group>
     <div v-show="currentList.length ===0">暂无数据</div>
     <hr>
     <TodoFooter :all="list.length" :ready="allSelect.length" :is-show-btn="!!allSelect.length"
-                :on-remove="()=>remove(-1)" :on-select="selectAll"/>
+                @removeAllReady="()=>remove(-1)" @selectAllItem="selectAll"/>
   </el-card>
 </template>
 
@@ -19,6 +22,7 @@ import TodoFooter from "./TodoFooter";
 
 let allTodoKey = '@@ALL_TODO';
 let allReadyKey = '@@ALL_READY';
+let initialList = ['写代码', '喝水', '接水', '上厕所'];
 
 export default {
   name: "TodoList",
@@ -51,10 +55,14 @@ export default {
     },
     addItem(val) {
       val && this.list.push(val);
+    },
+    resetData() {
+      this.list = initialList;
+      this.allSelect = [];
     }
   },
   created() {
-    let todo = window.sessionStorage.getItem(allTodoKey) ?? ['写代码', '喝水', '接水', '上厕所'];
+    let todo = window.sessionStorage.getItem(allTodoKey) ?? initialList;
     let ready = window.sessionStorage.getItem(allReadyKey) ?? [this.allSelect];
     this.list = typeof todo === 'string' ? [...JSON.parse(todo)] : todo;
     this.allSelect = typeof ready === 'string' ? [...JSON.parse(ready)] : ready;
@@ -88,8 +96,14 @@ export default {
 .todo-list {
   width: 40%;
 
-  .search-input {
+  .todo-head {
+    display: flex;
+    align-items: center;
     margin-bottom: 16px;
+
+    button {
+      margin-left: 8px;
+    }
   }
 }
 </style>
