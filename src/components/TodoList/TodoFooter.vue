@@ -23,22 +23,23 @@ export default {
       default: false
     },
   },
+  data() {
+    return {
+      isSelect: false
+    }
+  },
+  created() {
+    this.isSelect = this.all === this.ready ? this.all !== 0 : false;
+  },
+  updated() {
+    this.isSelect = this.all === this.ready ? this.all !== 0 : false;
+  },
   methods: {
-    onSelect() {
-      this.$emit('selectAllItem');
+    onSelect(val) {
+      this.$emit('selectAllItem', val);
     },
     onRemove() {
       this.$emit('removeAllReady');
-    }
-  },
-  computed: {
-    isSelect: {
-      get() {
-        if (this.all === this.ready && this.all === 0) {
-          return false;
-        }
-        return this.all === this.ready;
-      }
     }
   }
 }
