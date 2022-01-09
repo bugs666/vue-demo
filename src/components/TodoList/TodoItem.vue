@@ -1,7 +1,7 @@
 <template>
   <div class="todo-item">
-    <el-checkbox :label="todoData" v-if="!edit"/>
-    <el-input v-model="name" placeholder="请输入内容" v-if="edit" @change="changeName"/>
+    <el-checkbox :label="todoData" v-show="!isEdit"/>
+    <el-input v-model="name" placeholder="请输入内容" v-show="isEdit" @change="changeName"/>
     <div class="item-right">
       <i class="el-icon-edit edit-item-icon" @click="setEdit"></i>
       <el-button type="text" class="remove-btn" @click="onRemove">删除</el-button>
@@ -14,7 +14,7 @@ export default {
   name: "TodoItem",
   data() {
     return {
-      edit: false,
+      isEdit: false,
       name: this.todoData
     }
   },
@@ -29,11 +29,11 @@ export default {
       this.$emit('removeItem');
     },
     setEdit() {
-      this.edit = true;
+      this.isEdit = true;
     },
     changeName(val) {
       this.$emit('changeTodoName', val);
-      this.edit = false;
+      this.isEdit = false;
     }
   },
   destroyed() {

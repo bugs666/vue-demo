@@ -17,7 +17,10 @@
     <School/>
     <Students :isChangeBg="true"/>
     <hr/>
-    <TodoList/>
+    <div>
+      <TodoList/>
+      <VTranstion/>
+    </div>
   </div>
 </template>
 
@@ -26,6 +29,7 @@
 import School from './components/School.vue';
 import Students from './components/Students.vue';
 import TodoList from './components/TodoList/TodoList';
+import VTranstion from './components/VTranstion'
 import moment from 'moment';
 
 export default {
@@ -40,7 +44,7 @@ export default {
   },
   name: 'App',
   components: {
-    Students, School, TodoList
+    Students, School, TodoList, VTranstion
   },
   methods: {
     changeSortMode(type = 'common') {

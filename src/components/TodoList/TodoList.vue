@@ -1,5 +1,6 @@
 <template>
   <el-card class="todo-list">
+    <header>事件的发布与订阅，组件间的通信</header>
     <div class="todo-head">
       <el-input v-model="input" placeholder="请输入待办项" class="search-input" :clearable="true" @change="addItem"/>
       <el-button type="primary" @click="resetData" size="medium">重置数据</el-button>
@@ -107,7 +108,7 @@ export default {
   .todo-head {
     display: flex;
     align-items: center;
-    margin-bottom: 16px;
+    margin: 16px 0;
 
     button {
       margin-left: 8px;
