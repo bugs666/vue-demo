@@ -17,6 +17,7 @@
     <School/>
     <Students :isChangeBg="true"/>
     <hr/>
+    <test></test>
     <div>
       <TodoList/>
       <VTranstion/>
