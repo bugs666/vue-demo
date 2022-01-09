@@ -9,4 +9,7 @@ Vue.use(ElementUI);
 
 new Vue({
     render: h => h(App),
+    beforeCreate() {
+        Vue.prototype.$eventBus = this;
+    }
 }).$mount('#app')

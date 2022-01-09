@@ -12,7 +12,7 @@
     <div v-show="currentList.length ===0">暂无数据</div>
     <hr>
     <TodoFooter :all="list.length" :ready="allSelect.length" :is-show-btn="!!allSelect.length"
-                @removeAllReady="()=>remove(-1)" @selectAllItem="selectAll"/>
+                @removeAllReady="()=>remove(-1)"/>
   </el-card>
 </template>
 
@@ -66,6 +66,7 @@ export default {
     let ready = window.sessionStorage.getItem(allReadyKey) ?? [this.allSelect];
     this.list = typeof todo === 'string' ? [...JSON.parse(todo)] : todo;
     this.allSelect = typeof ready === 'string' ? [...JSON.parse(ready)] : ready;
+    this.$eventBus.$on('selectAllItem', this.selectAll);
   },
   computed: {
     currentList() {
@@ -88,6 +89,9 @@ export default {
     isSelectAll(val) {
       this.allSelect = val ? [...this.list] : [];
     }
+  },
+  beforeDestroy() {
+    this.$eventBus.$off('selectAllItem');
   }
 }
 </script>

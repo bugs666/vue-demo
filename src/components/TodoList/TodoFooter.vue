@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     onSelect(val) {
-      this.$emit('selectAllItem', val);
+      this.$eventBus.$emit('selectAllItem', val);
     },
     onRemove() {
       this.$emit('removeAllReady');
