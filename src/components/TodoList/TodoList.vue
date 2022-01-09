@@ -6,7 +6,8 @@
     </div>
     <el-checkbox-group v-model="allSelect">
       <div v-for="(item,index) in currentList" :key="index">
-        <TodoItem :todoData="item" @removeItem="()=>remove(index)"/>
+        <TodoItem :todoData="item" @removeItem="()=>remove(index)"
+                  @changeTodoName="(name)=>changeTodoName(index,name)"/>
       </div>
     </el-checkbox-group>
     <div v-show="currentList.length ===0">暂无数据</div>
@@ -59,6 +60,9 @@ export default {
     resetData() {
       this.list = initialList;
       this.allSelect = [];
+    },
+    changeTodoName(index, name) {
+      this.list.splice(index, 1, name);
     }
   },
   created() {

@@ -1,13 +1,23 @@
 <template>
   <div class="todo-item">
-    <el-checkbox :label="todoData"/>
-    <el-button type="text" class="remove-btn" @click="onRemove">删除</el-button>
+    <el-checkbox :label="todoData" v-if="!edit"/>
+    <el-input v-model="name" placeholder="请输入内容" v-if="edit" @change="changeName"/>
+    <div class="item-right">
+      <i class="el-icon-edit edit-item-icon" @click="setEdit"></i>
+      <el-button type="text" class="remove-btn" @click="onRemove">删除</el-button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "TodoItem",
+  data() {
+    return {
+      edit: false,
+      name: this.todoData
+    }
+  },
   props: {
     todoData: {
       type: String,
@@ -17,6 +27,13 @@ export default {
   methods: {
     onRemove() {
       this.$emit('removeItem');
+    },
+    setEdit() {
+      this.edit = true;
+    },
+    changeName(val) {
+      this.$emit('changeTodoName', val);
+      this.edit = false;
     }
   },
   destroyed() {
@@ -34,8 +51,17 @@ export default {
   align-items: center;
   padding: 8px;
 
+  .item-right {
+    display: flex;
+    align-items: center;
+  }
+
   &:hover {
     .remove-btn {
+      display: block;
+    }
+
+    .edit-item-icon {
       display: block;
     }
   }
@@ -44,6 +70,12 @@ export default {
     display: none;
     transition: display ease-in-out 0.3s;
     color: red;
+    margin-left: 4px;
+  }
+
+  .edit-item-icon {
+    display: none;
+    font-size: 16px;
   }
 }
 </style>
