@@ -50,6 +50,8 @@ export default {
   height: 30px;
   align-items: center;
   padding: 8px;
+  background: #42b983;
+  margin: 8px 0;
 
   .item-right {
     display: flex;

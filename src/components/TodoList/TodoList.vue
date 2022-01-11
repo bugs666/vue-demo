@@ -7,8 +7,10 @@
     </div>
     <el-checkbox-group v-model="allSelect">
       <div v-for="(item,index) in currentList" :key="index">
-        <TodoItem :todoData="item" @removeItem="()=>remove(index)"
-                  @changeTodoName="(name)=>changeTodoName(index,name)"/>
+        <transition name="removeItem" appear>
+          <TodoItem :todoData="item" @removeItem="()=>remove(index)"
+                    @changeTodoName="(name)=>changeTodoName(index,name)"/>
+        </transition>
       </div>
     </el-checkbox-group>
     <div v-show="currentList.length ===0">暂无数据</div>
@@ -113,6 +115,18 @@ export default {
     button {
       margin-left: 8px;
     }
+  }
+
+  .removeItem-enter-active, .removeItem-leave-active {
+    transition: ease-in-out 1s;
+  }
+
+  .removeItem-enter, .removeItem-leave-to {
+    transform: translateX(-100%);
+  }
+
+  .removeItem-enter-to, .removeItem-leave {
+    transform: translateX(0);
   }
 }
 </style>
