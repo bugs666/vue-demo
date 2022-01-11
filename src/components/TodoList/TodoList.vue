@@ -103,7 +103,7 @@ export default {
 
 <style scoped lang="scss">
 .todo-list {
-  width: 40%;
+  width: 45%;
 
   .todo-head {
     display: flex;

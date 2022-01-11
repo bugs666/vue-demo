@@ -18,7 +18,7 @@
     <Students :isChangeBg="true"/>
     <hr/>
     <test></test>
-    <div>
+    <div class="row-div">
       <TodoList/>
       <VTranstion/>
     </div>
@@ -122,7 +122,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -130,5 +130,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+  .row-div {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 </style>
