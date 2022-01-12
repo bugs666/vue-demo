@@ -14,14 +14,15 @@
         <h1>放大十倍后的数字是：<span v-big="num"></span></h1>
         <input type="text" v-focus="num">
         <button @click="num++">点我+1</button>-->
+    常量
     <School/>
     <Students :isChangeBg="true"/>
     <hr/>
-    <test></test>
     <div class="row-div">
       <TodoList/>
       <VTranstion/>
     </div>
+    <MovieList/>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ import School from './components/School.vue';
 import Students from './components/Students.vue';
 import TodoList from './components/TodoList/TodoList';
 import VTranstion from './components/VTranstion'
+import MovieList from './components/MovieList'
 import moment from 'moment';
 
 export default {
@@ -45,7 +47,7 @@ export default {
   },
   name: 'App',
   components: {
-    Students, School, TodoList, VTranstion
+    Students, School, TodoList, VTranstion, MovieList
   },
   methods: {
     changeSortMode(type = 'common') {
