@@ -23,6 +23,7 @@
       <VTranstion/>
     </div>
     <MovieList/>
+    <SlotDemo/>
   </div>
 </template>
 
@@ -33,6 +34,7 @@ import Students from './components/Students.vue';
 import TodoList from './components/TodoList/TodoList';
 import VTranstion from './components/VTranstion'
 import MovieList from './components/MovieList'
+import SlotDemo from './components/SlotDemo'
 import moment from 'moment';
 
 export default {
@@ -47,7 +49,7 @@ export default {
   },
   name: 'App',
   components: {
-    Students, School, TodoList, VTranstion, MovieList
+    Students, School, TodoList, VTranstion, MovieList, SlotDemo
   },
   methods: {
     changeSortMode(type = 'common') {
