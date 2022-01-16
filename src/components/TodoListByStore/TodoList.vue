@@ -55,9 +55,6 @@ export default {
     addItem(val) {
       val && this.list.push(val);
     },
-    // resetData() {
-    //   this.$store.dispatch('resetData');
-    // },
     ...mapActions('todoList', ['resetData', 'init']),
     changeTodoName(index, name) {
       this.list.splice(index, 1, name);
