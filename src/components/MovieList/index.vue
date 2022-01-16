@@ -17,7 +17,6 @@ export default {
   },
   methods: {
     getMovie() {
-      debugger
       this.axios.get(`${BASE_PATH}/movieApi/api?id=1302425`).then(res => {
         this.movieStr = JSON.stringify(res);
       }).catch(e => {

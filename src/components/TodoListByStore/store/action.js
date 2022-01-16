@@ -15,7 +15,6 @@ export default {
         commit('selectAll', state);
     },
     removeItem({commit, state: {list, allSelect}}) {
-        debugger;
         let filter = list.filter(it => !allSelect.includes(it));
         commit('removeItem', filter);
     }

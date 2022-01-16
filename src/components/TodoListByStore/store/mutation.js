@@ -5,6 +5,7 @@ export default {
         state = {...state, ...payload};
     },
     resetData(state, payload) {
+        debugger
         state = {...state, ...payload};
     },
     selectAll(state, payload) {

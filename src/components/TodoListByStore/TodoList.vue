@@ -23,7 +23,8 @@
 <script>
 import TodoItem from "./TodoItem";
 import TodoFooter from "./TodoFooter";
-import store from './store'
+import store from './store';
+import {mapActions} from 'vuex';
 
 let allTodoKey = '@@ALL_TODO';
 let allReadyKey = '@@ALL_READY';
@@ -62,9 +63,10 @@ export default {
     addItem(val) {
       val && this.list.push(val);
     },
-    resetData() {
-      this.$store.dispatch('resetData');
-    },
+    // resetData() {
+    //   this.$store.dispatch('resetData');
+    // },
+    ...mapActions(['resetData', 'init']),
     changeTodoName(index, name) {
       this.list.splice(index, 1, name);
     }
@@ -75,7 +77,7 @@ export default {
     // this.list = typeof todo === 'string' ? [...JSON.parse(todo)] : todo;
     // this.allSelect = typeof ready === 'string' ? [...JSON.parse(ready)] : ready;
     // this.$eventBus.$on('selectAllItem', this.selectAll);
-    this.$store.dispatch('init');
+    this.init();
   },
   computed: {
     currentList() {
