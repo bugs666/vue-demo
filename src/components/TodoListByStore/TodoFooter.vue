@@ -1,7 +1,7 @@
 <template>
   <div class="todo-footer">
-    <el-checkbox @change="onSelect" v-model="isSelect">已完成{{ ready }}/全部{{ all }}</el-checkbox>
-    <el-button type="text" v-if="isShowBtn" @click="onRemove">清除已完成项目</el-button>
+    <el-checkbox @change="onSelect" v-model="$store.state.isSelectAll">已完成{{ ready }}/全部{{ all }}</el-checkbox>
+    <el-button type="text" v-if="!!$store.state.allSelect.length" @click="onRemove">清除已完成项目</el-button>
   </div>
 </template>
 
@@ -36,10 +36,10 @@ export default {
   },
   methods: {
     onSelect(val) {
-      this.$eventBus.$emit('selectAllItem', val);
+      this.$store.dispatch('selectAll', val);
     },
     onRemove() {
-      this.$emit('removeAllReady');
+      this.$store.dispatch('removeItem');
     }
   }
 }

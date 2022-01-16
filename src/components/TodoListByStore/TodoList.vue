@@ -1,11 +1,11 @@
 <template>
   <el-card class="todo-list">
-    <header>事件的发布与订阅，组件间的通信</header>
+    <header>Vuex版本的TodoList案例</header>
     <div class="todo-head">
       <el-input v-model="input" placeholder="请输入待办项" class="search-input" :clearable="true" @change="addItem"/>
       <el-button type="primary" @click="resetData" size="medium">重置数据</el-button>
     </div>
-    <el-checkbox-group v-model="allSelect">
+    <el-checkbox-group v-model="$store.state.allSelect">
       <div v-for="(item,index) in currentList" :key="index">
         <transition name="removeItem" appear>
           <TodoItem :todoData="item" @removeItem="()=>remove(index)"
@@ -63,27 +63,27 @@ export default {
       val && this.list.push(val);
     },
     resetData() {
-      this.list = initialList;
-      this.allSelect = [];
+      this.$store.dispatch('resetData');
     },
     changeTodoName(index, name) {
       this.list.splice(index, 1, name);
     }
   },
   created() {
-    let todo = window.sessionStorage.getItem(allTodoKey) ?? initialList;
-    let ready = window.sessionStorage.getItem(allReadyKey) ?? [this.allSelect];
-    this.list = typeof todo === 'string' ? [...JSON.parse(todo)] : todo;
-    this.allSelect = typeof ready === 'string' ? [...JSON.parse(ready)] : ready;
-    this.$eventBus.$on('selectAllItem', this.selectAll);
+    // let todo = window.sessionStorage.getItem(allTodoKey) ?? initialList;
+    // let ready = window.sessionStorage.getItem(allReadyKey) ?? [this.allSelect];
+    // this.list = typeof todo === 'string' ? [...JSON.parse(todo)] : todo;
+    // this.allSelect = typeof ready === 'string' ? [...JSON.parse(ready)] : ready;
+    // this.$eventBus.$on('selectAllItem', this.selectAll);
+    this.$store.dispatch('init');
   },
   computed: {
     currentList() {
       if (this.input) {
-        let list = this.list.filter(it => it.includes(this.input));
+        let list = this.$store.state.list.filter(it => it.includes(this.input));
         return [...list];
       }
-      return [...this.list];
+      return [...this.$store.state.list];
     }
   },
   watch: {

@@ -24,6 +24,7 @@
     </div>
     <MovieList/>
     <SlotDemo/>
+    <TodoListByStore/>
   </div>
 </template>
 
@@ -35,6 +36,7 @@ import TodoList from './components/TodoList/TodoList';
 import VTranstion from './components/VTranstion'
 import MovieList from './components/MovieList'
 import SlotDemo from './components/SlotDemo'
+import TodoListByStore from './components/TodoListByStore/TodoList';
 import moment from 'moment';
 
 export default {
@@ -49,7 +51,7 @@ export default {
   },
   name: 'App',
   components: {
-    Students, School, TodoList, VTranstion, MovieList, SlotDemo
+    Students, School, TodoList, VTranstion, MovieList, SlotDemo, TodoListByStore
   },
   methods: {
     changeSortMode(type = 'common') {
