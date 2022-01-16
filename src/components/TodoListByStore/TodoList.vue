@@ -24,7 +24,7 @@
 import TodoItem from "./TodoItem";
 import TodoFooter from "./TodoFooter";
 import store from './store';
-import {mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 
 let allTodoKey = '@@ALL_TODO';
 let allReadyKey = '@@ALL_READY';
@@ -71,6 +71,9 @@ export default {
       this.list.splice(index, 1, name);
     }
   },
+  computed: {
+    ...mapGetters(['currentList'])
+  },
   created() {
     // let todo = window.sessionStorage.getItem(allTodoKey) ?? initialList;
     // let ready = window.sessionStorage.getItem(allReadyKey) ?? [this.allSelect];
@@ -78,15 +81,6 @@ export default {
     // this.allSelect = typeof ready === 'string' ? [...JSON.parse(ready)] : ready;
     // this.$eventBus.$on('selectAllItem', this.selectAll);
     this.init();
-  },
-  computed: {
-    currentList() {
-      if (this.input) {
-        let list = this.$store.state.list.filter(it => it.includes(this.input));
-        return [...list];
-      }
-      return [...this.$store.state.list];
-    }
   },
   watch: {
     list(val) {

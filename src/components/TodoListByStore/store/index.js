@@ -3,9 +3,10 @@ import Vuex, {Store} from 'vuex';
 import state from "./state";
 import mutations from "./mutation";
 import actions from "./action";
+import getters from "./getter";
 
 Vue.use(Vuex);
 
 export default new Store({
-    state, mutations, actions
+    state, mutations, actions, getters
 });
