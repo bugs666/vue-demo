@@ -5,7 +5,7 @@
       <el-input v-model="input" placeholder="请输入待办项" class="search-input" :clearable="true" @change="addItem"/>
       <el-button type="primary" @click="resetData" size="medium">重置数据</el-button>
     </div>
-    <el-checkbox-group v-model="$store.state.allSelect">
+    <el-checkbox-group v-model="allSelect">
       <div v-for="(item,index) in currentList" :key="index">
         <transition name="removeItem" appear>
           <TodoItem :todoData="item" @removeItem="()=>remove(index)"
@@ -24,7 +24,7 @@
 import TodoItem from "./TodoItem";
 import TodoFooter from "./TodoFooter";
 import store from './store';
-import {mapActions, mapGetters} from 'vuex';
+import {mapActions, mapGetters, mapState} from 'vuex';
 
 let allTodoKey = '@@ALL_TODO';
 let allReadyKey = '@@ALL_READY';
@@ -34,14 +34,6 @@ export default {
   name: "TodoListByStore",
   components: {TodoItem, TodoFooter},
   store,
-  data() {
-    return {
-      list: [],
-      input: '',
-      allSelect: [],
-      isSelectAll: false
-    }
-  },
   methods: {
     remove(index) {
       if (index === -1) {
@@ -66,20 +58,16 @@ export default {
     // resetData() {
     //   this.$store.dispatch('resetData');
     // },
-    ...mapActions(['resetData', 'init']),
+    ...mapActions('todoList', ['resetData', 'init']),
     changeTodoName(index, name) {
       this.list.splice(index, 1, name);
     }
   },
   computed: {
-    ...mapGetters(['currentList'])
+    ...mapGetters('todoList', ['currentList']),
+    ...mapState('todoList', ['allSelect', 'list', 'input'])
   },
   created() {
-    // let todo = window.sessionStorage.getItem(allTodoKey) ?? initialList;
-    // let ready = window.sessionStorage.getItem(allReadyKey) ?? [this.allSelect];
-    // this.list = typeof todo === 'string' ? [...JSON.parse(todo)] : todo;
-    // this.allSelect = typeof ready === 'string' ? [...JSON.parse(ready)] : ready;
-    // this.$eventBus.$on('selectAllItem', this.selectAll);
     this.init();
   },
   watch: {

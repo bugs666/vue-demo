@@ -7,6 +7,8 @@ import getters from "./getter";
 
 Vue.use(Vuex);
 
-export default new Store({
+let todoList = {
+    namespaced: true,
     state, mutations, actions, getters
-});
+};
+export default new Store({modules: {todoList}});
