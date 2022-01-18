@@ -1,5 +1,3 @@
-import fa from "element-ui/src/locale/lang/fa";
-
 export default {
     init(state, payload) {
         state = {...state, ...payload};

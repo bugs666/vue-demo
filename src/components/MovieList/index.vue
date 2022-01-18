@@ -2,6 +2,7 @@
   <div>
     <button @click="getMovie">点我获取电影数据</button>
     <div v-show="!!movieStr">{{ movieStr }}</div>
+    <router-view></router-view>
   </div>
 </template>
 
