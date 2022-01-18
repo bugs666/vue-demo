@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "VTranstion",
+  name: "VTransition",
   data() {
     return {
       showAnimation: true,

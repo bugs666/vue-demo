@@ -14,30 +14,23 @@
         <h1>放大十倍后的数字是：<span v-big="num"></span></h1>
         <input type="text" v-focus="num">
         <button @click="num++">点我+1</button>-->
-    常量
     <MyMenu/>
-    <School/>
-    <Students :isChangeBg="true"/>
-    <hr/>
-    <div class="row-div">
-      <TodoList/>
-      <VTranstion/>
-    </div>
-    <MovieList/>
-    <SlotDemo/>
-    <TodoListByStore/>
+    <router-view></router-view>
+    <!--    <School/>-->
+    <!--    <Students :isChangeBg="true"/>-->
+    <!--    <hr/>-->
+    <!--    <div class="row-div">-->
+    <!--      <TodoList/>-->
+    <!--      <VTransition/>-->
+    <!--    </div>-->
+    <!--    <MovieList/>-->
+    <!--    <SlotDemo/>-->
+    <!--    <TodoListByStore/>-->
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import School from './components/School.vue';
-import Students from './components/Students.vue';
-import TodoList from './components/TodoList/TodoList';
-import VTranstion from './components/VTranstion'
-import MovieList from './components/MovieList'
-import SlotDemo from './components/SlotDemo'
-import TodoListByStore from './components/TodoListByStore/TodoList';
 import moment from 'moment';
 import MyMenu from './components/Menus';
 
@@ -53,7 +46,7 @@ export default {
   },
   name: 'App',
   components: {
-    Students, School, TodoList, VTranstion, MovieList, SlotDemo, TodoListByStore, MyMenu
+    MyMenu
   },
   methods: {
     changeSortMode(type = 'common') {

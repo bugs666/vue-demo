@@ -1,16 +1,15 @@
 <template>
   <div>
-    <el-menu>
+    <el-menu mode="horizontal">
       <el-menu-item v-for="route in allRoutes" :key="route.name">
         <router-link :to="route.path">{{ route.name }}</router-link>
       </el-menu-item>
     </el-menu>
-    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import routes from "../../configs/router.config";
+import {routes} from "../../router/router.config";
 
 export default {
   name: "MyMenu",
