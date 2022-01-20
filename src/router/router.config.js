@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import VueRouter from "vue-router";
-import MovieList from '../components/MovieList';
-import VTransition from '../components/VTranstion';
 // import School from './components/School.vue';
 // import Students from './components/Students.vue';
 // import TodoList from './components/TodoList/TodoList';
@@ -14,19 +12,22 @@ export const routes = [
     {
         path: '/movie',
         name: '电影列表',
-        component: MovieList,
+        component: () => import('@/components/MovieList'),
         children: [
             {
-                path: 'vTransition',
-                name: '动画',
-                component: VTransition
+                path: 'movieDetail',
+                name: 'movieDetail',
+                component: () => import('@/components/MovieDetail'),
+                props(route) {
+                    return {...route.query}
+                }
             }
         ]
     },
     {
         path: '/vTransition',
         name: '动画',
-        component: VTransition
+        component: () => import('@/components/VTransition')
     }
 ];
 const router = new VueRouter({routes});
