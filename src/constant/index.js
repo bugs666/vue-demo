@@ -6,3 +6,5 @@ export const MOVIE_BASE_INFOS = [
     {name: '雄狮少年', id: '35144311'},
     {name: '古董局中局', id: '26996619'}
 ]
+
+export const USER_INFO = '@@user_info';

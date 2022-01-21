@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import {routes} from "../../router/router.config";
+import {menus} from "../../router/router.config";
 
 export default {
   name: "MyMenu",
   data() {
     return {
-      allRoutes: routes
+      allRoutes: menus
     }
   }
 }
